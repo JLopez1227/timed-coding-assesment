@@ -1,6 +1,7 @@
 let startButton= document.getElementById("Start Quiz")
 let questionDiv= document.getElementById("Quiz_Questions") 
 let initalPage= document.getElementById("Inital Page")
+let timerSpan = document.getElementById("Time")
 
 let questions=[{
     question:"Question 1", 
@@ -12,8 +13,29 @@ let questions=[{
     answer: "Choice 3"
 }]
 let questionNumber= 0
+let timer;
+let timeLeft = 60;
 
 questionDiv.style.display="none"
+
+function startTimer(){
+    timer = setInterval(function(){
+        timeLeft--
+        timerSpan.textContent = timeLeft 
+        if(timeLeft<=0) {
+            clearInterval(timer);
+            endQuiz();
+        }
+    }, 1000);
+}
+function endQuiz(){
+
+}
+
+function nextQuestion(event){
+    console.log(event.target.textContent, questions[questionNumber].answer)
+    
+}
 
 
 
@@ -22,6 +44,7 @@ function startQuiz(event){
     initalPage.style.display="none"
     questionDiv.style.display="block"
     questionDiv.innerHTML= ""
+    startTimer();
 
     let currentQuestion = questions[questionNumber]
     let questionPara= document.createElement("p")
@@ -31,8 +54,9 @@ function startQuiz(event){
         let choiceBtn= document.createElement("button")
         choiceBtn.innerHTML= currentQuestion.choices[i];
         choiceDiv.append(choiceBtn)
+        choiceBtn.addEventListener("click", nextQuestion);
     }
-    questionDiv.append(currentQuestion, choiceDiv)
+    questionDiv.append(questionPara, choiceDiv)
 }
 
 startButton.addEventListener("click", startQuiz)
