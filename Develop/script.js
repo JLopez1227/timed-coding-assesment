@@ -1,19 +1,24 @@
-let startButton = document.getElementById("Start Quiz");
+let startButton = document.getElementById("start_quiz");
 let questionDiv = document.getElementById("Quiz_Questions");
 let initalPage = document.getElementById("Inital Page");
 let timerSpan = document.getElementById("Time");
 
 let questions = [
   {
-    question: "Question 1",
-    choices: ["Choice 1", "Choice 2"],
-    answer: "Choice 1",
+    question: "When creating boiler plate HTML, which of the following would you do?",
+    choices: ["Use ! to generate the HTML", "Type all of the HTML from scratch", "Google HTML boiler plate then copy and paste"],
+    answer: "Use ! to generate the HTML",
   },
   {
-    question: "Question 2",
-    choices: ["Choice 3", "Choice 4"],
-    answer: "Choice 3",
+    question: "Which of the following is NOT a JavaScript data type?",
+    choices: ["String", "Boolean", "Function"],
+    answer: "Function",
   },
+  {
+    question: "Which of the following is the correct symbol for ID in CSS?",
+    choices: [".", "#", "ID"],
+    answer: "#",
+  }
 ];
 let questionNumber = 0;
 let timer;
@@ -38,6 +43,8 @@ function endQuiz() {
   initalInput.setAttribute("id", "Initals");
   questionDiv.appendChild(initalInput);
   var saveInital = document.createElement("button");
+  saveInital.classList.add('saveInital')
+
   saveInital.textContent = "Save";
   questionDiv.appendChild(saveInital);
 
@@ -86,10 +93,12 @@ function renderQuestion() {
 
   let currentQuestion = questions[questionNumber];
   let questionPara = document.createElement("p");
+  questionPara.classList.add('quiz_questions')
   questionPara.innerHTML = currentQuestion.question;
   let choiceDiv = document.createElement("div");
   for (let i = 0; i < currentQuestion.choices.length; i++) {
     let choiceBtn = document.createElement("button");
+    choiceBtn.classList.add('quiz_button')
     choiceBtn.innerHTML = currentQuestion.choices[i];
     choiceDiv.append(choiceBtn);
     choiceBtn.addEventListener("click", nextQuestion);
