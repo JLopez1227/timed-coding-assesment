@@ -9,4 +9,4 @@ In this week's homework we were tasked with making a short, multiple-choice, ass
 
 ## Preview
 The following image demonstrates the web application's apperance and functionality:
-![Preview of Website(Desktop)]()
+![Preview of Website(Desktop)](./Assests/Screenshot%202023-05-12%20190941.png)
